@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         EditText edNamaDepan = (EditText) findViewById(R.id.edNamaDepan);
         EditText edNamaBelakang = (EditText) findViewById(R.id.edNamaBelakang);
+        EditText edUmur = (EditText) findViewById(R.id.edUmur);
         Button btnSimpan = (Button) findViewById(R.id.btnSimpan);
 
         ArrayList<String> daftar_nama = new ArrayList<>();
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String isian_nama_depan = edNamaDepan.getText().toString();
                 String isian_nama_belakang = edNamaBelakang.getText().toString();
+                String isian_umur = edUmur.getText().toString();
 
                 if(isian_nama_depan.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Isian masih kosong", Toast.LENGTH_SHORT).show();
@@ -40,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
                     daftar_nama.add(nama_lengkap);
                     edNamaDepan.setText("");
                     edNamaBelakang.setText("");
+                    int umur = Integer.parseInt(((EditText) edUmur).getText().toString());
+                    if(umur <=10) {
+                        Toast.makeText(getApplicationContext(), "Status : Anak", Toast.LENGTH_SHORT).show();
+                    }else if (umur >=10 && umur <=20) {
+                        Toast.makeText(getApplicationContext(), "Status : Remaja", Toast.LENGTH_SHORT).show();
+                    }else if (umur >=20 && umur <=40) {
+                        Toast.makeText(getApplicationContext(), "Status : Dewasa", Toast.LENGTH_SHORT).show();
+                    }else if (umur <40) {
+                        Toast.makeText(getApplicationContext(), "Status : Tua", Toast.LENGTH_SHORT).show();
+                    }
                     intent_list.putStringArrayListExtra("daftar_nama", daftar_nama);
                     startActivity(intent_list);
                 }
